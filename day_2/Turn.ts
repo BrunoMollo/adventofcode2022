@@ -1,14 +1,24 @@
+import { Result } from "./Result";
 import { Shape } from "./Shape";
 
+
 export class Turn{
-   
-    constructor( private opponenet:Shape, private me:Shape){}
+ 
+    private me:Shape
+    
+    constructor( private opponent:Shape, private result:Result){ 
+        
+        let move=Shape.All.find(s=>s.fight(this.opponent)==result)
+
+        if(!move)
+            throw new Error("Couldn't infer my move")
+
+        this.me=move;
+
+    }
 
     public myPoints():number{
-        const outcomePoints=this.me.fight(this.opponenet)
-        const shapeScore=this.me.score
-
-        return outcomePoints + shapeScore
+        return this.me.score +this.result.score
     }
 
 }

@@ -1,55 +1,50 @@
-const RockCode=["A", "X"] 
-const PaperCode=["B" , "Y"]
-const ScissorsCode=["C", "Z"] 
+import { Result } from "./Result"
+
+const RockCode=["A"] 
+const PaperCode=["B"]
+const ScissorsCode=["C"] 
 
 export class Shape{
-    name:"Rock" | "Paper" | "Scissors"
-    score:number
+    
+    private constructor(public name:"Rock" | "Paper" | "Scissors", public score:number){}
+
+    static readonly Rock= new Shape("Rock", 1)
+    static readonly Paper= new Shape("Paper", 2)
+    static readonly Scissors= new Shape("Scissors",3)
+
+    static readonly All=[Shape.Rock, Shape.Paper, Shape.Scissors]
 
 
-    constructor(code:string){
-        if(RockCode.includes(code)){
-            this.name="Rock"
-            this.score=1
-        }
+    static fromCode(code:string):Shape{
+        if(RockCode.includes(code))
+            return Shape.Rock
 
-        if(PaperCode.includes(code)){
-            this.name="Paper"
-            this.score=2
-        }
+        if(PaperCode.includes(code))
+            return Shape.Paper
 
-        if(ScissorsCode.includes(code)){
-            this.name="Scissors"
-            this.score=3
-        }
+        if(ScissorsCode.includes(code))
+            return Shape.Scissors
 
-
-        if(!this.name)
-            throw new Error("invalid code")
+        throw new Error("invalid code")
     }
 
 
+    public fight(oppenent:Shape):Result{
     
-
-    public fight(oppenent:Shape):number{
-        const LOSS=0
-        const DRAW=3
-        const WiN=6
-
         if(this.name==oppenent.name)
-            return DRAW
+            return Result.draw
 
 
         if(this.name=="Rock" && oppenent.name=="Scissors")
-            return WiN
+            return Result.win
         
         if(this.name=="Paper" && oppenent.name=="Rock")
-            return WiN
+            return Result.win
 
         if(this.name=="Scissors" && oppenent.name=="Paper")
-            return WiN
+            return Result.win
 
 
-        else return LOSS
+        else return Result.loss
     }
 }

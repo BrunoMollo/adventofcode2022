@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { Turn } from './Turn';
 import { Shape } from './Shape';
+import { Result } from '../Result';
 
 
 
@@ -11,9 +12,9 @@ const lines=text.split("\n").filter(l=>l.length>0); // there is an empty line an
 
 
 const turns =lines.map(l=>{
-    let opponent=new Shape(l[0])
-    let me= new Shape(l[2])
-    return new Turn(opponent, me)
+    let opponent=Shape.fromCode(l[0])
+    let result= Result.fromCode(l[2])
+    return new Turn(opponent, result)
 })
 
 const total=turns.map(t=>t.myPoints()).reduce( (prev, acum)=>acum+=prev )
