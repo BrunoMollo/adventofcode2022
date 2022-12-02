@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { Turn } from './Turn';
 import { Shape } from './Shape';
-import { Result } from '../Result';
+import { Result } from './Result';
 
 
 
