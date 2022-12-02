@@ -2,4 +2,4 @@
 *.js
 /.vscode
 
-!quik_run.js
+!quick_run.js
