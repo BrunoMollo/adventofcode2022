@@ -7,8 +7,6 @@ class Elve{
     calories:number=0
 }
 
-
-
 const lines:string[] =text.split("\n");
 
 
@@ -27,11 +25,10 @@ for(let l of lines){
 }
 
 
-let max=0
-elves.forEach(e=>{
-    if(e.calories>max){
-        max=e.calories
-    }
+elves=elves.sort((a,b)=>b.calories-a.calories) //decending
 
-})
-console.log(max)
+let firstThree=elves.splice(0,3);
+
+let total=firstThree.map(e=>e.calories).reduce( (prev, acum)=>acum+=prev )
+
+console.log(total)
