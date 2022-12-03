@@ -39,9 +39,7 @@ class Compartment{
                 }
             }
         }
-
         return intersection
-
     }
 
 }
@@ -53,6 +51,8 @@ export default class Rucksack{
     secondCompartment:Compartment
 
     constructor(line:string){
+        if(line==undefined)return
+
         let f=line.slice(0,line.length/2)
         let s=line.slice(line.length/2, line.length)
 
@@ -60,10 +60,36 @@ export default class Rucksack{
         this.secondCompartment=new Compartment(s)
     }
 
+    get items():Item[]{
+        return [...this.firstCompartment.items, ...this.secondCompartment.items] 
+    }
+
 
     repeatedItemTypes():Item[]{
         return this.firstCompartment.intersec(this.secondCompartment)
     }
 
+
+    intersec(...others:Rucksack[]):Item[]{
+        const intersection:Item[]=[]
+
+        for(let i of this.items){
+            if(intersection.includes(i)) continue
+            
+            let apearances=0
+            for(let other of others){
+                for(let i_other of other.items){
+                    if(i.equals(i_other)){
+                        apearances++
+                        break
+                    }
+                }
+                
+            }
+            if(apearances==others.length) intersection.push(i)
+        }
+        
+        return intersection
+    }
 
 }

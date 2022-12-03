@@ -1,30 +1,24 @@
 import Rucksack, { Item } from './Rucksack.js';
 import readText from '../readText.js';
+import Group from './Group.js';
+
 
 
 const text=readText('./day_3/input.txt')
 
-const lines=text.split("\n").map((l)=>l.trim())
+const lines=text.split("\n").map((l)=>l.trim()).filter(l=>l.length>0); //ouch
 
-const rucksacks=lines.map(l=>new Rucksack(l))
+const groups:Group[]=[]
 
-
-let priorityPerRuckSack=rucksacks.map(r=>{
-    const repeatedItemTypes:Item[]=[]
-    r.repeatedItemTypes().forEach(
-        (i)=>{
-            if(repeatedItemTypes.some((o)=>o.equals(i))) return
-            else repeatedItemTypes.push(i)
-        }
-    )
-    if(repeatedItemTypes.length==0) return 0
-
-    else return repeatedItemTypes.map(i=>i.priority).reduce((prev,acum)=>acum+=prev)
-})
+for(let i=0; i<lines.length; i+=3){
+    groups.push( new Group(lines[i], lines[i+1], lines[i+2]) )
+}
 
 
-
-const result =priorityPerRuckSack.reduce((prev,acum)=>acum+=prev)
+const result =groups.map(g=>g.badget)
+                    .map(b=>b?.priority || 0)
+                    .reduce((prev,acum)=>acum+=prev)
 
 console.log(result)
+
 
