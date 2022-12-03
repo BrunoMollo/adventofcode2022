@@ -1,8 +1,8 @@
 // -----------
 // I made this script to quickly compile and run the .ts files
 // -----------
+import {exec } from 'node:child_process'
 
-const { exec } = require('node:child_process');
 
 function waitingmessage(msj, frameDelay, untilPredicate){
     const renderFrame = (i = 0)=>{

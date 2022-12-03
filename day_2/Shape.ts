@@ -1,10 +1,10 @@
-import { Result } from "./Result"
+import Result from "./Result.js"
 
 const RockCode=["A"] 
 const PaperCode=["B"]
 const ScissorsCode=["C"] 
 
-export class Shape{
+export default class Shape{
     
     private constructor(public name:"Rock" | "Paper" | "Scissors", public score:number){}
 

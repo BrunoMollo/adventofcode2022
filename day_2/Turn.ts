@@ -1,8 +1,8 @@
-import { Result } from "./Result";
-import { Shape } from "./Shape";
+import Result from "./Result.js";
+import Shape from "./Shape.js";
 
 
-export class Turn{
+export default class Turn{
  
     private me:Shape
     

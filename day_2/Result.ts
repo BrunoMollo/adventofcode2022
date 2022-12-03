@@ -3,7 +3,7 @@ const DRAW=3
 const WiN=6
 
 
-export class Result{
+export default class Result{
     
     private constructor(public name:"win"|"draw"|"loss", public score:number){}
 

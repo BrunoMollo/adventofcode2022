@@ -1,7 +1,7 @@
-import * as path from 'path';
-import * as fs from 'fs';
+import readText from '../readText.js';
 
-const text = fs.readFileSync(path.join(__dirname, './input.txt'), 'utf-8');
+
+const text=readText('./day_1/input.txt')
 
 class Elve{
     calories:number=0
