@@ -1,12 +1,12 @@
-import readText from '../readText.js';
+import {readText} from '../readText.js';
 
-
-const text=readText('./day_1/input.txt')
 
 class Elve{
     calories:number=0
 }
 
+
+const text=readText('./day_1/input.txt')
 const lines:string[] =text.split("\n");
 
 

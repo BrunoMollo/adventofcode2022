@@ -1,12 +1,8 @@
-import Rucksack, { Item } from './Rucksack.js';
-import readText from '../readText.js';
+import { readLines } from '../readText.js';
 import Group from './Group.js';
 
 
-
-const text=readText('./day_3/input.txt')
-
-const lines=text.split("\n").map((l)=>l.trim()).filter(l=>l.length>0); //ouch
+const lines=readLines('./day_3/input.txt')
 
 const groups:Group[]=[]
 

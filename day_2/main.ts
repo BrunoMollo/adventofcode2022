@@ -1,12 +1,10 @@
 import Turn from './Turn.js';
 import Shape from './Shape.js';
 import Result from './Result.js';
-import readText from '../readText.js';
+import { readLines } from '../readText.js';
 
 
-const text=readText('./day_2/input.txt')
-
-const lines=text.split("\n").filter(l=>l.length>0); // there is an empty line an the end
+const lines=readLines('./day_2/input.txt')
 
 
 const turns =lines.map(l=>{
