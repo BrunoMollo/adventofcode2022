@@ -12,6 +12,15 @@ class Range{
     }
 
 
+    overlaps(other:Range):boolean{
+        if(this.start>other.end)
+            return false                // ()[]
+
+        if(this.end<other.start)        // []()
+            return false
+
+        return true
+    }
 }
 
 
@@ -33,7 +42,7 @@ for( let l of lines){
 }
 
 
-const redundandts=rangesPairs.filter( r=> r[0].contains(r[1]) || r[1].contains(r[0]) )
+const redundandts=rangesPairs.filter( r=> r[0].overlaps(r[1]) )
 
 const result = redundandts.length
 
