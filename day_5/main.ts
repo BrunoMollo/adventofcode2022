@@ -26,11 +26,15 @@ for(let l of lines){
 }
 
 for(let m of moves){
-    for(let i=0; i<m.amount;i++){
-        let popped=stacks[m.from].pop()
-        if(popped)
-            stacks[m.to].push(popped)
-    }  
+        const from=stacks[m.from]
+        let popped=from.slice(from.length-m.amount,from.length)
+
+        for(let i=0; i<m.amount; i++)
+            from.pop()
+
+        stacks[m.to].push(...popped)
+
+     
 }
 
 const result=stacks.map(c=>(c.length==0)?[' ']:c)
