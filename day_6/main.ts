@@ -12,7 +12,7 @@ const hasRepeted=(arr:string[]):boolean=>{
     return repeted
 }
 
-const MARK_LENGHT=4
+const MARK_LENGHT=14
 
 for(let i=MARK_LENGHT; i<text.length; i++){
     let sub=text.slice(i-MARK_LENGHT, i).split("")
