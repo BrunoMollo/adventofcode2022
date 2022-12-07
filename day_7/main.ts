@@ -1,4 +1,4 @@
-import { readLines, readText } from '../readText.js';
+import { readLines } from '../readText.js';
 import { Dir } from './Dir.js';
 import { RouteTraker } from './RouteTraker.js';
 
@@ -12,16 +12,24 @@ for(let l of lines){
     r.read(l)
 }
 
-const arr:Dir[]=[]
+
+const UPDATE_SIZE=30000000
+const TOTAL_DISK=70000000
+const ACTUAL_SPACE=TOTAL_DISK-r.root.size
+const NEEDED_SPACE=UPDATE_SIZE-ACTUAL_SPACE
+
+const mayDelete:Dir[]=[]
 function foo(d:Dir){
-    if(d.size<=100000){
-        arr.push(d)
+    if(d.size>=NEEDED_SPACE){
+        mayDelete.push(d)
     }
     d.children.forEach(c=>{if(c instanceof Dir) foo(c)})
 }
 foo(r.root)
 
-const result=arr.map(d=>d.size).reduce((prev,acum)=>acum+=prev)
+
+
+const result=mayDelete.map(d=>d.size).sort((a,b)=>b-a).pop()
 
 console.log(result)
 
